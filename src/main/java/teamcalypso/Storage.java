@@ -1,9 +1,9 @@
 package teamcalypso;
 
 public class Storage {
-    int id;
-    String type;
-    int size;
+   private int id;
+   private String type;
+   private int size;
 
     public Storage(int id, String type, int size) {
         this.id = id;

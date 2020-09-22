@@ -2,38 +2,46 @@ package teamcalypso;
 
 import org.junit.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.*;
 
 public class IteratorTest {
-    private Iterator<Storage> iterator;
 
     @Test
-    public void testEmptyData() {
-        final Storage[] storage = {};
-        iterator = new Iterator<>(storage);
-
-        assertFalse(iterator.hasNext());
+    public void firstIteratorTest() {
+        Iterator iterator = new Iterator(new Storage[0]);
+        boolean result = iterator.hasNext();
+        assertEquals(result,false);
     }
 
     @Test
-    public void testSingleData() {
-        final Storage[] storage = new Storage[]{new Storage(1, "Test 1", 1)};
-        iterator = new Iterator<>(storage);
-
-        assertTrue(iterator.hasNext());
-        assertSame(storage[0],iterator.next());
-        assertFalse(iterator.hasNext());
+    public void secondIteratorTest() {
+        Iterator iterator = new Iterator(new Storage[2]);
+        boolean result = iterator.hasNext();
+        assertEquals(result,true);
     }
 
     @Test
-    public void testMultipleData() {
-        final Storage[] storage = new Storage[]{new Storage(1, "Test 1", 1), new Storage(2, "Test 2", 2)};
-        iterator = new Iterator<>(storage);
+    public void thirdIteratorTest() {
+        Storage[] data = new Storage[]{
+                new Storage(1, "int", 10),
+                new Storage(2, "float", 4),
 
-        assertTrue(iterator.hasNext());
-        assertSame(storage[0],iterator.next());
-        assertTrue(iterator.hasNext());
-        assertSame(storage[1],iterator.next());
-        assertFalse(iterator.hasNext());
+        };
+        Iterator iterator = new Iterator(data);
+        Storage result = iterator.next();
+        assertEquals(result.getId(),1);
+        assertEquals(result.getType(),"int");
+        assertEquals(result.getSize(),10);
+    }
+
+    //If method Next cannot return next data
+    //if the method cannot provide any data it should throw mistake
+    @Test(expected = NoSuchElementException.class)
+    public void fourthIteratorTest() {
+        Storage[] data = new Storage[0];
+        Iterator iterator = new Iterator(data);
+        iterator.next();
     }
 }

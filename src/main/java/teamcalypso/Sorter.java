@@ -1,27 +1,37 @@
 package teamcalypso;
 
 public class Sorter<E extends Storage> {
+    private final E[] data;
     //TODO implement logic for this class to sort items by count
     // descending and type ascending (in case some of items is with the same count)
 
 
     public Sorter(E[] data) {
-        //TODO implement method body
-        //сначала сделаем сортировку по убыванию
-        for (int i = 0; i < data.length - 1; i--) {
-            for (int j = 0; j < i; j++) {
-                if (data[j] > data[j+1]) {
-                    int tmp = data[j];
-                    data[j] = data[j+1];
-                    data[j+1] = tmp;
-                }
-            }
+        this.data = data;
 
-        }
     }
 
     public E[] sort() {
-        //TODO implement method body
-        return null;
+        for (int i = data.length - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                Storage first = data[j];
+                Storage second = data[j+1];
+                if (second.getId() > first.getId()) {
+                    swapElements(j);
+                } else if (second.getId() == first.getId()) {
+                    if (second.getType().compareTo(first.getType()) < 0) {
+                        swapElements(j);
+                    }
+                }
+            }
+        }
+        return data;
     }
+
+    private void swapElements(int j) {
+        E tmp = data[j];
+        data[j] = data[j + 1];
+        data[j + 1] = tmp;
+    }
+
 }
