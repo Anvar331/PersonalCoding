@@ -9,9 +9,9 @@ public class Filter<E extends Storage>  {
     }
 
     public E[] applyFilter() {
-        findStorageWithTypesWithCapitalLetters();
+        E[] result = findStorageWithTypesWithCapitalLetters();
 
-        return data;
+        return result;
     }
 
     private E[] findStorageWithTypesWithCapitalLetters() {
