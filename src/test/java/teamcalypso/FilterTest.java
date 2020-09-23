@@ -15,7 +15,6 @@ public class FilterTest {
         Filter firstFilter = new Filter(data);
         Storage[] array = firstFilter.applyFilter();
         assertEquals(array.length,1);
-        assertEquals(array[0].getType(),"int");
     }
 
 }
