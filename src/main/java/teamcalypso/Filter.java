@@ -1,6 +1,6 @@
 package teamcalypso;
 
-/*public class Filter<E extends Storage>  {
+public class Filter<E extends Storage>  {
 
     private final E[] data;
 
@@ -9,6 +9,20 @@ package teamcalypso;
     }
 
     public E[] applyFilter() {
+        findStorageWithTypesWithCapitalLetters();
 
+        return data;
     }
-}*/
+
+    private E[] findStorageWithTypesWithCapitalLetters() {
+        int index = 0;
+        Storage[] newStorage = new Storage[data.length];
+        for (int i = 0; i < data.length; i++) {
+            if (!(data[i].getType().charAt(0) > 'A') && (data[i].getType().charAt(0) < 'Z')){
+                 newStorage[index] = data[i];
+                 index++;
+            }
+        }
+        return data;
+    }
+}
