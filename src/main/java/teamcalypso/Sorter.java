@@ -16,9 +16,9 @@ public class Sorter<E extends Storage> {
             for (int j = 0; j < i; j++) {
                 Storage first = data[j];
                 Storage second = data[j+1];
-                if (second.getId() > first.getId()) {
+                if (second.getSize() > first.getSize()) {
                     swapElements(j);
-                } else if (second.getId() == first.getId()) {
+                } else if (second.getSize() == first.getSize()) {
                     if (second.getType().compareTo(first.getType()) < 0) {
                         swapElements(j);
                     }

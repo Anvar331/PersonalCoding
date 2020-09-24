@@ -15,8 +15,8 @@ public class SorterTest {
         };
         Sorter firstSorter = new Sorter(data);
         Storage[] array = firstSorter.sort();
-        assertEquals(array[0].getId(),2);
-        assertEquals(array[1].getId(),1);
+        assertEquals(array[0].getSize(),10);
+        assertEquals(array[1].getSize(),4);
     }
 
     @Test
